@@ -1,0 +1,349 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --sidebar-bg: #3f0e40;
+    --sidebar-text: #cfc3cf;
+    --sidebar-hover: #350d36;
+    --sidebar-active: #1164a3;
+    --main-bg: #ffffff;
+    --main-text: #1d1c1d;
+    --border-color: #e1e1e1;
+    --input-bg: #ffffff;
+    --message-hover: #f8f8f8;
+    --accent: #1264a3;
+    --green: #007a5a;
+}
+
+html, body {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    font-size: 15px;
+    line-height: 1.46668;
+}
+
+.app {
+    display: flex;
+    height: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.workspace-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.workspace-header h1 {
+    font-size: 18px;
+    font-weight: 900;
+    color: #ffffff;
+}
+
+.channels-section {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.add-btn {
+    background: none;
+    border: none;
+    color: var(--sidebar-text);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 2px 8px;
+    border-radius: 4px;
+    transition: background 0.15s;
+}
+
+.add-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.channel-list {
+    list-style: none;
+}
+
+.channel-item {
+    padding: 6px 16px 6px 24px;
+    cursor: pointer;
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.channel-item:hover {
+    background: var(--sidebar-hover);
+}
+
+.channel-item.active {
+    background: var(--sidebar-active);
+    color: #ffffff;
+}
+
+.channel-item::before {
+    content: '#';
+    font-weight: 400;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--main-bg);
+    min-width: 0;
+}
+
+.channel-header {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.channel-header h2 {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--main-text);
+}
+
+/* Messages */
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.message {
+    padding: 8px 0;
+    display: flex;
+    gap: 12px;
+}
+
+.message:hover {
+    background: var(--message-hover);
+    margin: 0 -20px;
+    padding: 8px 20px;
+}
+
+.message-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    background: var(--accent);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.message-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.message-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.message-author {
+    font-weight: 700;
+    color: var(--main-text);
+}
+
+.message-time {
+    font-size: 12px;
+    color: #616061;
+}
+
+.message-text {
+    color: var(--main-text);
+    word-wrap: break-word;
+}
+
+/* Message Form */
+.message-form {
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.message-form input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.message-form input:focus {
+    border-color: var(--accent);
+}
+
+.send-btn {
+    padding: 10px 20px;
+    background: var(--green);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.send-btn:hover {
+    background: #148567;
+}
+
+.send-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 24px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.24);
+}
+
+.modal h3 {
+    margin-bottom: 16px;
+    font-size: 18px;
+    color: var(--main-text);
+}
+
+.modal input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 15px;
+    outline: none;
+    margin-bottom: 16px;
+}
+
+.modal input:focus {
+    border-color: var(--accent);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.btn-primary {
+    background: var(--green);
+    color: #ffffff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #148567;
+}
+
+.btn-secondary {
+    background: #ffffff;
+    color: var(--main-text);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: #f8f8f8;
+}
+
+/* System message */
+.message.system {
+    justify-content: center;
+}
+
+.message.system .message-text {
+    color: #616061;
+    font-style: italic;
+    font-size: 13px;
+}
+
+/* Empty state */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #616061;
+    text-align: center;
+    padding: 20px;
+}
+
+.empty-state h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: var(--main-text);
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SlackLite</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="workspace-header">
+                <h1>SlackLite</h1>
+            </div>
+            <div class="channels-section">
+                <div class="section-header">
+                    <span>Channels</span>
+                    <button id="add-channel-btn" class="add-btn" title="Add channel">+</button>
+                </div>
+                <ul id="channel-list" class="channel-list"></ul>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="channel-header">
+                <h2 id="current-channel-name">#general</h2>
+            </header>
+            <div id="messages" class="messages"></div>
+            <form id="message-form" class="message-form">
+                <input
+                    type="text"
+                    id="message-input"
+                    placeholder="Type a message..."
+                    autocomplete="off"
+                >
+                <button type="submit" class="send-btn">Send</button>
+            </form>
+        </main>
+    </div>
+
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal">
+            <h3>Create Channel</h3>
+            <form id="channel-form">
+                <input
+                    type="text"
+                    id="channel-name-input"
+                    placeholder="channel-name"
+                    autocomplete="off"
+                    pattern="[a-z0-9-]+"
+                    title="Lowercase letters, numbers, and hyphens only"
+                >
+                <div class="modal-actions">
+                    <button type="button" id="cancel-modal-btn" class="btn-secondary">Cancel</button>
+                    <button type="submit" class="btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
